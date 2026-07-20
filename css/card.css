@@ -1,0 +1,109 @@
+.profile-card{
+
+    width:430px;
+
+    background:white;
+
+    border:2px solid #888;
+
+}
+
+.card-header{
+
+    background:#222;
+
+    color:white;
+
+    text-align:center;
+
+    padding:18px;
+
+    font-size:28px;
+
+    font-weight:bold;
+
+}
+
+.card-image{
+
+    height:520px;
+
+    overflow:hidden;
+
+    position:relative;
+
+    background:#d8d8d8;
+
+}
+
+.card-table{
+
+    padding:20px;
+
+    min-height:180px;
+
+}
+
+.kr-name{
+
+    font-size:30px;
+    font-weight:bold;
+
+    text-align:center;
+
+}
+
+.sub-name{
+
+    margin-top:8px;
+
+    text-align:center;
+
+    font-size:18px;
+
+}
+
+.profile-table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+.profile-table th{
+
+    width:120px;
+
+    background:#333;
+
+    color:white;
+
+    padding:10px;
+
+}
+
+.profile-table td{
+
+    padding:10px;
+
+}
+
+.profile-image{
+
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    transform:
+
+    translate(-50%,-50%);
+
+    max-width:100%;
+
+    max-height:100%;
+
+    display:none;
+
+}

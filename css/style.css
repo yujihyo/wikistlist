@@ -1,0 +1,19 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    background:#ececec;
+    font-family:Pretendard,sans-serif;
+
+}
+
+#app{
+
+    display:flex;
+    height:100vh;
+
+}

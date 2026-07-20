@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Wiki Pair Maker</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="css/preview.css">
+    <link rel="stylesheet" href="css/card.css">
+
+</head>
+
+<body>
+
+    <div id="app">
+
+        <!-- 좌측 작업영역 -->
+        <aside id="sidebar">
+
+            <h2>작업영역</h2>
+
+            <hr>
+
+            <div class="section">
+
+                <label>편집할 카드</label>
+
+                <select id="selectedCard">
+
+                    <option value="0">왼쪽 카드</option>
+                    <option value="1">오른쪽 카드</option>
+
+                </select>
+
+            </div>
+
+            <hr>
+
+            <div class="section">
+
+                <label>한글 이름</label>
+                <input id="nameKR">
+
+                <label>한문 이름</label>
+                <input id="nameJP">
+
+                <label>영문 이름</label>
+                <input id="nameEN">
+
+                <label>헤더 색상</label>
+                <input type="color" id="headerColor">
+
+            </div>
+
+            <hr>
+
+            <div class="section">
+
+                <label>이미지</label>
+
+                <input type="file" id="imageInput" accept="image/*">
+
+            </div>
+
+        </aside>
+
+        <!-- 우측 미리보기 -->
+
+        <main id="preview">
+
+            <div id="cardContainer"></div>
+
+        </main>
+
+    </div>
+
+    <script src="js/profile.js"></script>
+    <script src="js/preview.js"></script>
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>

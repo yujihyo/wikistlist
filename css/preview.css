@@ -1,0 +1,21 @@
+#preview{
+
+    flex:1;
+
+    overflow:auto;
+
+    padding:30px;
+
+}
+
+#cardContainer{
+
+    display:flex;
+
+    gap:30px;
+
+    justify-content:center;
+
+    align-items:flex-start;
+
+}
