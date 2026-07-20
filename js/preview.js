@@ -26,11 +26,7 @@ function createCardElement(profile) {
 
         </div>
 
-        <div class="card-image">
-
-            <img class="profile-image">
-
-        </div>
+        <div class="card-image"></div>
 
         <table class="profile-table"></table>
 
@@ -44,36 +40,37 @@ function createCardElement(profile) {
 
 function updateCard(card, profile) {
 
-    const header = card.querySelector(".card-header");
+    card.querySelector(".card-header").style.background =
+        profile.headerColor;
 
-    const krName = card.querySelector(".kr-name");
+    card.querySelector(".kr-name").textContent =
+        profile.nameKR;
 
-    const subName = card.querySelector(".sub-name");
-
-    const table = card.querySelector(".profile-table");
-
-    header.style.background = profile.headerColor;
-
-    krName.textContent = profile.nameKR;
-
-    subName.textContent =
+    card.querySelector(".sub-name").textContent =
         `${profile.nameJP} | ${profile.nameEN}`;
 
-    table.innerHTML = createRows(profile);
+    card.querySelector(".profile-table").innerHTML =
+        createRows(profile);
 
-    const image =
-        card.querySelector(".profile-image");
+    const imageBox =
+        card.querySelector(".card-image");
 
-    if (profile.image.src) {
+    if (profile.image.url) {
 
-        image.src =
-            profile.image.src;
+        imageBox.style.backgroundImage =
+            `url(${profile.image.url})`;
 
-        image.style.display = "block";
+        imageBox.style.backgroundRepeat = "no-repeat";
+
+        imageBox.style.backgroundPosition =
+            `${profile.image.offsetX}% ${profile.image.offsetY}%`;
+
+        imageBox.style.backgroundSize =
+            `${profile.image.scale}%`;
 
     } else {
 
-        image.style.display = "none";
+        imageBox.style.backgroundImage = "none";
 
     }
 
@@ -90,7 +87,8 @@ function renderCards() {
 
     profiles.forEach(profile => {
 
-        const card = createCardElement(profile);
+        const card =
+            createCardElement(profile);
 
         cardElements.push(card);
 
