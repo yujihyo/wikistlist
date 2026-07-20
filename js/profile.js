@@ -1,3 +1,4 @@
+let category = "카테고리";
 const profiles = [
 
 {

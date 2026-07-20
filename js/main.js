@@ -1,33 +1,33 @@
-const selectedCard =
-    document.getElementById("selectedCard");
+const selectedCard = document.getElementById("selectedCard");
+const saveImage =
+    document.getElementById("saveImage");
+const categoryInput =
+    document.getElementById("category");
 
-const nameKR =
-    document.getElementById("nameKR");
+const nameKR = document.getElementById("nameKR");
+const nameJP = document.getElementById("nameJP");
+const nameEN = document.getElementById("nameEN");
+const headerColor = document.getElementById("headerColor");
 
-const nameJP =
-    document.getElementById("nameJP");
+const imageInput = document.getElementById("imageInput");
+const imageScale = document.getElementById("imageScale");
+const imageOffsetX = document.getElementById("imageOffsetX");
+const imageOffsetY = document.getElementById("imageOffsetY");
 
-const nameEN =
-    document.getElementById("nameEN");
-
-const headerColor =
-    document.getElementById("headerColor");
-
-const imageInput =
-    document.getElementById("imageInput");
-
-const imageScale =
-    document.getElementById("imageScale");
-
-const imageOffsetX =
-    document.getElementById("imageOffsetX");
-
-const imageOffsetY =
-    document.getElementById("imageOffsetY");
+const rowTitle = document.getElementById("rowTitle");
+const rowValue = document.getElementById("rowValue");
+const addRow = document.getElementById("addRow");
+const rowEditor = document.getElementById("rowEditor");
 
 let currentCard = 0;
+const SAVE_KEY = "wikistlist-save";
 
+loadLocalData();
 renderCards();
+categoryInput.value = category;
+
+document.getElementById("categoryPreview").textContent =
+    "분류 : " + category;
 loadEditor();
 
 selectedCard.addEventListener("change", () => {
@@ -37,6 +37,17 @@ selectedCard.addEventListener("change", () => {
     loadEditor();
 
 });
+
+function refreshCurrentCard() {
+
+    updateCard(
+        cardElements[currentCard],
+        profiles[currentCard]
+    );
+
+    saveLocalData();
+
+}
 
 function loadEditor() {
 
@@ -53,14 +64,12 @@ function loadEditor() {
     imageOffsetX.value = profile.image.offsetX;
     imageOffsetY.value = profile.image.offsetY;
 
-}
+    drawRows();
 
-function refreshCurrentCard() {
+    categoryInput.value = category;
 
-    updateCard(
-        cardElements[currentCard],
-        profiles[currentCard]
-    );
+    document.getElementById("categoryPreview").textContent =
+        "분류 : " + category;
 
 }
 
@@ -87,12 +96,27 @@ nameEN.addEventListener("input", () => {
 
 headerColor.addEventListener("input", () => {
 
-    profiles[currentCard].headerColor = headerColor.value;
+    profiles[currentCard].headerColor =
+        headerColor.value;
+
+    drawRows();
+
     refreshCurrentCard();
 
 });
 
-imageInput.addEventListener("change", (e) => {
+categoryInput.addEventListener("input", () => {
+
+    category = categoryInput.value;
+
+    document.getElementById("categoryPreview").textContent =
+        "분류 : " + category;
+
+    saveLocalData();
+
+});
+
+imageInput.addEventListener("change", e => {
 
     const file = e.target.files[0];
 
@@ -100,10 +124,9 @@ imageInput.addEventListener("change", (e) => {
 
     const reader = new FileReader();
 
-    reader.onload = (event) => {
+    reader.onload = ev => {
 
-        profiles[currentCard].image.url =
-            event.target.result;
+        profiles[currentCard].image.url = ev.target.result;
 
         refreshCurrentCard();
 
@@ -139,3 +162,195 @@ imageOffsetY.addEventListener("input", () => {
     refreshCurrentCard();
 
 });
+
+addRow.addEventListener("click", () => {
+
+    if (profiles[currentCard].rows.length >= 10) {
+
+        alert("프로필 항목은 최대 10개까지 추가할 수 있습니다.");
+
+        return;
+
+    }
+
+    profiles[currentCard].rows.push([
+        "",
+        ""
+    ]);
+
+    drawRows();
+    refreshCurrentCard();
+
+});
+
+function drawRows() {
+
+    rowEditor.innerHTML = "";
+
+    profiles[currentCard].rows.forEach((row, index) => {
+
+        const div = document.createElement("div");
+
+        div.style.border = "1px solid #ddd";
+        div.style.padding = "8px";
+        div.style.marginBottom = "8px";
+
+        div.innerHTML = `
+
+            <input
+                class="editTitle"
+                data-index="${index}"
+                value="${row[0]}"
+            >
+
+            <textarea
+                class="editValue"
+                data-index="${index}"
+                rows="3"
+            >${row[1]}</textarea>
+
+            <button class="delete" data-index="${index}">
+                삭제
+            </button>
+
+        `;
+
+        rowEditor.appendChild(div);
+
+    });
+
+    document.querySelectorAll(".editTitle").forEach(input => {
+
+        input.oninput = () => {
+
+            profiles[currentCard]
+                .rows[input.dataset.index][0] =
+                input.value;
+
+            refreshCurrentCard();
+
+        };
+
+    });
+
+    document.querySelectorAll(".editValue").forEach(input => {
+
+        input.oninput = () => {
+
+            profiles[currentCard]
+                .rows[input.dataset.index][1] =
+                input.value;
+
+            refreshCurrentCard();
+
+        };
+
+    });
+
+    document.querySelectorAll(".delete").forEach(btn => {
+
+        btn.onclick = () => {
+
+            profiles[currentCard]
+                .rows.splice(btn.dataset.index, 1);
+
+            drawRows();
+            refreshCurrentCard();
+
+        };
+
+    });
+
+}
+
+function saveLocalData() {
+
+    localStorage.setItem(
+        SAVE_KEY,
+        JSON.stringify({
+
+            category,
+            profiles
+
+        })
+    );
+
+}
+
+function loadLocalData() {
+
+    const data =
+        localStorage.getItem(SAVE_KEY);
+
+    if (!data) return;
+
+    try {
+
+        const save =
+            JSON.parse(data);
+
+        if (save.category !== undefined) {
+
+            category = save.category;
+
+        }
+
+        if (save.profiles) {
+
+            save.profiles.forEach((profile, index) => {
+
+                if (!profiles[index]) return;
+
+                profiles[index] = profile;
+
+            });
+
+        }
+
+    }
+
+    catch (e) {
+
+        console.error(e);
+
+    }
+
+}
+
+saveImage.addEventListener("click", savePreviewAsImage);
+
+async function savePreviewAsImage() {
+
+    if (!window.html2canvas) {
+
+        alert("html2canvas를 불러오지 못했습니다.");
+
+        return;
+
+    }
+
+    const preview =
+        document.getElementById("preview");
+
+    const canvas =
+        await html2canvas(preview, {
+
+            backgroundColor: "#ffffff",
+
+            useCORS: true,
+
+            scale: 2
+
+        });
+
+    const link =
+        document.createElement("a");
+
+    link.download = "pair.png";
+
+    link.href =
+        canvas.toDataURL("image/png");
+
+    link.click();
+
+}

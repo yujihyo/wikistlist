@@ -3,10 +3,17 @@ const cardElements = [];
 function createRows(profile) {
 
     return profile.rows.map(row => `
+
         <tr>
-            <th>${row[0]}</th>
-            <td>${row[1]}</td>
+
+            <th style="background:${profile.headerColor};color:#fff;">
+                ${row[0]}
+            </th>
+
+            <td>${String(row[1]).replace(/\n/g, "<br>")}</td>
+
         </tr>
+
     `).join("");
 
 }
@@ -14,6 +21,7 @@ function createRows(profile) {
 function createCardElement(profile) {
 
     const card = document.createElement("div");
+
     card.className = "profile-card";
 
     card.innerHTML = `
@@ -40,7 +48,10 @@ function createCardElement(profile) {
 
 function updateCard(card, profile) {
 
-    card.querySelector(".card-header").style.background =
+    const header =
+        card.querySelector(".card-header");
+
+    header.style.background =
         profile.headerColor;
 
     card.querySelector(".kr-name").textContent =
@@ -71,7 +82,8 @@ function updateCard(card, profile) {
 
     } else {
 
-        imageBox.style.backgroundImage = "none";
+        imageBox.style.backgroundImage =
+            "none";
 
     }
 

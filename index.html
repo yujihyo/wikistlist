@@ -19,14 +19,20 @@
 
     <div id="app">
 
-        <!-- 좌측 작업영역 -->
         <aside id="sidebar">
 
-            <h2>작업영역</h2>
+            <button id="saveImage">
+                이미지 저장
+            </button>
+
+<hr>
 
             <hr>
 
             <div class="section">
+
+                <label>분류</label>
+                <input id="category" placeholder="장르/분류">
 
                 <label>편집할 카드</label>
 
@@ -76,17 +82,33 @@
 
             </div>
 
+            <hr>
+
+            <div class="section">
+
+                <h3>프로필 표</h3>
+
+                <div id="rowEditor"></div>
+
+                <button id="addRow">
+                    행 추가
+                </button>
+
+            </div>
+
         </aside>
 
-        <!-- 우측 미리보기 -->
-
         <main id="preview">
+
+            <div id="categoryPreview"></div>
 
             <div id="cardContainer"></div>
 
         </main>
 
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 
     <script src="js/profile.js"></script>
     <script src="js/preview.js"></script>
