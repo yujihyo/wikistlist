@@ -3,11 +3,11 @@ const profiles = [
 {
     headerColor: "#222222",
 
-    image:{
-        src:null,
-        scale:1,
-        x:0,
-        y:0
+    image: {
+        url: null,
+        scale: 100,
+        offsetX: 50,
+        offsetY: 50
     },
 
     nameKR: "캐릭터 1",
@@ -20,18 +20,16 @@ const profiles = [
         ["생일", "5월 5일"],
         ["신체", "177cm"]
     ]
-
-    
 },
 
 {
     headerColor: "#9b2d47",
 
-    image:{
-        url:null,
-        scale:100,
-        offsetX:50,
-        offsetY:50
+    image: {
+        url: null,
+        scale: 100,
+        offsetX: 50,
+        offsetY: 50
     },
 
     nameKR: "캐릭터 2",

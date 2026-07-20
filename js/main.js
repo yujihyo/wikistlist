@@ -28,7 +28,6 @@ const imageOffsetY =
 let currentCard = 0;
 
 renderCards();
-
 loadEditor();
 
 selectedCard.addEventListener("change", () => {
@@ -44,34 +43,23 @@ function loadEditor() {
     const profile = profiles[currentCard];
 
     nameKR.value = profile.nameKR;
-
     nameJP.value = profile.nameJP;
-
     nameEN.value = profile.nameEN;
-
     headerColor.value = profile.headerColor;
 
     imageInput.value = "";
 
-    imageScale.value =
-        profile.image.scale;
-
-    imageOffsetX.value =
-        profile.image.offsetX;
-
-    imageOffsetY.value =
-        profile.image.offsetY;
+    imageScale.value = profile.image.scale;
+    imageOffsetX.value = profile.image.offsetX;
+    imageOffsetY.value = profile.image.offsetY;
 
 }
 
 function refreshCurrentCard() {
 
     updateCard(
-
         cardElements[currentCard],
-
         profiles[currentCard]
-
     );
 
 }
@@ -79,7 +67,6 @@ function refreshCurrentCard() {
 nameKR.addEventListener("input", () => {
 
     profiles[currentCard].nameKR = nameKR.value;
-
     refreshCurrentCard();
 
 });
@@ -87,7 +74,6 @@ nameKR.addEventListener("input", () => {
 nameJP.addEventListener("input", () => {
 
     profiles[currentCard].nameJP = nameJP.value;
-
     refreshCurrentCard();
 
 });
@@ -95,7 +81,6 @@ nameJP.addEventListener("input", () => {
 nameEN.addEventListener("input", () => {
 
     profiles[currentCard].nameEN = nameEN.value;
-
     refreshCurrentCard();
 
 });
@@ -103,51 +88,21 @@ nameEN.addEventListener("input", () => {
 headerColor.addEventListener("input", () => {
 
     profiles[currentCard].headerColor = headerColor.value;
-
     refreshCurrentCard();
 
 });
 
 imageInput.addEventListener("change", (e) => {
 
-    imageScale.addEventListener("input", () => {
-
-        profiles[currentCard].image.scale =
-            Number(imageScale.value);
-
-        updateCurrentCard();
-
-    });
-
-    imageOffsetX.addEventListener("input", () => {
-
-        profiles[currentCard].image.offsetX =
-            Number(imageOffsetX.value);
-
-        updateCurrentCard();
-
-    });
-
-    imageOffsetY.addEventListener("input", () => {
-
-        profiles[currentCard].image.offsetY =
-            Number(imageOffsetY.value);
-
-        updateCurrentCard();
-
-    });
-
-    const file =
-        e.target.files[0];
+    const file = e.target.files[0];
 
     if (!file) return;
 
-    const reader =
-        new FileReader();
+    const reader = new FileReader();
 
-    reader.onload = function (event) {
+    reader.onload = (event) => {
 
-        profiles[currentCard].image.src =
+        profiles[currentCard].image.url =
             event.target.result;
 
         refreshCurrentCard();
@@ -155,5 +110,32 @@ imageInput.addEventListener("change", (e) => {
     };
 
     reader.readAsDataURL(file);
+
+});
+
+imageScale.addEventListener("input", () => {
+
+    profiles[currentCard].image.scale =
+        Number(imageScale.value);
+
+    refreshCurrentCard();
+
+});
+
+imageOffsetX.addEventListener("input", () => {
+
+    profiles[currentCard].image.offsetX =
+        Number(imageOffsetX.value);
+
+    refreshCurrentCard();
+
+});
+
+imageOffsetY.addEventListener("input", () => {
+
+    profiles[currentCard].image.offsetY =
+        Number(imageOffsetY.value);
+
+    refreshCurrentCard();
 
 });
