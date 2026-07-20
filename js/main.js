@@ -1,20 +1,29 @@
 const selectedCard =
-document.getElementById("selectedCard");
+    document.getElementById("selectedCard");
 
 const nameKR =
-document.getElementById("nameKR");
+    document.getElementById("nameKR");
 
 const nameJP =
-document.getElementById("nameJP");
+    document.getElementById("nameJP");
 
 const nameEN =
-document.getElementById("nameEN");
+    document.getElementById("nameEN");
 
 const headerColor =
-document.getElementById("headerColor");
+    document.getElementById("headerColor");
 
 const imageInput =
-document.getElementById("imageInput");
+    document.getElementById("imageInput");
+
+const imageScale =
+    document.getElementById("imageScale");
+
+const imageOffsetX =
+    document.getElementById("imageOffsetX");
+
+const imageOffsetY =
+    document.getElementById("imageOffsetY");
 
 let currentCard = 0;
 
@@ -42,7 +51,16 @@ function loadEditor() {
 
     headerColor.value = profile.headerColor;
 
-    imageInput.value="";
+    imageInput.value = "";
+
+    imageScale.value =
+        profile.image.scale;
+
+    imageOffsetX.value =
+        profile.image.offsetX;
+
+    imageOffsetY.value =
+        profile.image.offsetY;
 
 }
 
@@ -90,20 +108,47 @@ headerColor.addEventListener("input", () => {
 
 });
 
-imageInput.addEventListener("change",(e)=>{
+imageInput.addEventListener("change", (e) => {
+
+    imageScale.addEventListener("input", () => {
+
+        profiles[currentCard].image.scale =
+            Number(imageScale.value);
+
+        updateCurrentCard();
+
+    });
+
+    imageOffsetX.addEventListener("input", () => {
+
+        profiles[currentCard].image.offsetX =
+            Number(imageOffsetX.value);
+
+        updateCurrentCard();
+
+    });
+
+    imageOffsetY.addEventListener("input", () => {
+
+        profiles[currentCard].image.offsetY =
+            Number(imageOffsetY.value);
+
+        updateCurrentCard();
+
+    });
 
     const file =
-    e.target.files[0];
+        e.target.files[0];
 
-    if(!file) return;
+    if (!file) return;
 
     const reader =
-    new FileReader();
+        new FileReader();
 
-    reader.onload=function(event){
+    reader.onload = function (event) {
 
         profiles[currentCard].image.src =
-        event.target.result;
+            event.target.result;
 
         refreshCurrentCard();
 

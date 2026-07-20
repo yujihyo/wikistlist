@@ -60,7 +60,8 @@ function updateCard(card, profile) {
         imageBox.style.backgroundImage =
             `url(${profile.image.url})`;
 
-        imageBox.style.backgroundRepeat = "no-repeat";
+        imageBox.style.backgroundRepeat =
+            "no-repeat";
 
         imageBox.style.backgroundPosition =
             `${profile.image.offsetX}% ${profile.image.offsetY}%`;
