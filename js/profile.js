@@ -24,7 +24,7 @@ const profiles = [
 },
 
 {
-    headerColor: "#9b2d47",
+    headerColor: "#777777",
 
     image: {
         url: null,

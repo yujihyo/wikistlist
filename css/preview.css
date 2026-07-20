@@ -54,6 +54,8 @@
 
     background:#f8f8f8;
 
+    font-size:calc(18px * var(--card-scale));
+
 }
 
 .category-text{
