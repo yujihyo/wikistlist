@@ -26,8 +26,8 @@ loadLocalData();
 renderCards();
 categoryInput.value = category;
 
-document.getElementById("categoryPreview").textContent =
-    "분류 : " + category;
+document.getElementById("categoryPreview").innerHTML =
+    '분류 : <span class="category-text">' + category + '</span>';
 loadEditor();
 
 selectedCard.addEventListener("change", () => {
@@ -68,9 +68,8 @@ function loadEditor() {
 
     categoryInput.value = category;
 
-    document.getElementById("categoryPreview").textContent =
-        "분류 : " + category;
-
+    document.getElementById("categoryPreview").innerHTML =
+        '분류 : <span class="category-text">' + category + '</span>';
 }
 
 nameKR.addEventListener("input", () => {
@@ -109,8 +108,8 @@ categoryInput.addEventListener("input", () => {
 
     category = categoryInput.value;
 
-    document.getElementById("categoryPreview").textContent =
-        "분류 : " + category;
+    document.getElementById("categoryPreview").innerHTML =
+        '분류 : <span class="category-text">' + category + '</span>';
 
     saveLocalData();
 
@@ -321,35 +320,39 @@ saveImage.addEventListener("click", savePreviewAsImage);
 
 async function savePreviewAsImage() {
 
-    if (!window.html2canvas) {
+    const source = document.getElementById("exportArea");
 
-        alert("html2canvas를 불러오지 못했습니다.");
+    const clone = source.cloneNode(true);
 
-        return;
+    clone.style.position = "absolute";
+    clone.style.left = "-10000px";
+    clone.style.top = "0";
 
-    }
+    clone.style.width = source.offsetWidth + "px";
+    clone.style.height = "auto";
+    clone.style.overflow = "visible";
+    clone.style.padding = "40px";
+    clone.style.background = "#ececec";
 
-    const preview =
-        document.getElementById("preview");
+    document.body.appendChild(clone);
 
-    const canvas =
-        await html2canvas(preview, {
+    const canvas = await html2canvas(clone,{
 
-            backgroundColor: "#ffffff",
+        backgroundColor:"#ececec",
 
-            useCORS: true,
+        useCORS:true,
 
-            scale: 2
+        scale:2
 
-        });
+    });
 
-    const link =
-        document.createElement("a");
+    document.body.removeChild(clone);
 
-    link.download = "pair.png";
+    const link=document.createElement("a");
 
-    link.href =
-        canvas.toDataURL("image/png");
+    link.download="pair.png";
+
+    link.href=canvas.toDataURL();
 
     link.click();
 
