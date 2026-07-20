@@ -340,13 +340,13 @@ async function savePreviewAsImage() {
     clone.style.height = "auto";
     clone.style.overflow = "visible";
     clone.style.padding = "40px";
-    clone.style.background = "#ececec";
+    clone.style.background = "#fff";
 
     document.body.appendChild(clone);
 
     const canvas = await html2canvas(clone,{
 
-        backgroundColor:"#ececec",
+        backgroundColor:"#fff",
 
         useCORS:true,
 

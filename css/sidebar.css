@@ -1,3 +1,24 @@
+@font-face {
+    font-family: 'Isamanru';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/GongGothicLight.woff') format('woff');
+    font-weight: 300;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Isamanru';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/GongGothicMedium.woff') format('woff');
+    font-weight: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Isamanru';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/GongGothicBold.woff') format('woff');
+    font-weight: 700;
+    font-display: swap;
+}
+
 #sidebar{
 
     width:360px;
@@ -10,7 +31,7 @@
 
     overflow-y:auto;
 
-    font-family:"SUIT",sans-serif;
+    font-family:"Isamanru", normal;
 
 }
 
@@ -26,7 +47,19 @@
 
     margin-bottom:8px;
 
-    font-weight:bold;
+    font-size: 14px;
+
+}
+
+.section label-a{
+
+    display:block;
+
+    margin-bottom:8px;
+
+    font-weight: 300;
+
+    font-size: 14px;
 
 }
 
@@ -50,6 +83,10 @@
 
     padding:8px;
 
+}
+
+.section p{
+    margin-bottom: 40px;
 }
 
 .section hr{
@@ -114,12 +151,6 @@ input[type="range"]{
 
 }
 
-#rowEditor button{
-
-    width:100%;
-
-}
-
 .cardSelect{
 
     display:flex;
@@ -155,5 +186,45 @@ input[type="range"]{
     height:auto;
 
     margin:0;
+
+}
+
+.imageEditor{
+
+    margin-top:10px;
+
+    padding:18px;
+
+    border:1px solid #dddddd;
+
+    border-radius:12px;
+
+    background:#f7f7f7;
+
+}
+
+.imageEditor label{
+
+    margin-top:12px;
+
+    margin-bottom:6px;
+
+}
+
+.imageEditor label:first-child{
+
+    margin-top:0;
+
+}
+
+.imageEditor input[type="file"]{
+
+    margin-bottom:14px;
+
+}
+
+.imageEditor input[type="range"]{
+
+    margin-bottom:16px;
 
 }

@@ -20,43 +20,44 @@
     <div id="app">
 
         <aside id="sidebar">
-
-            <button id="saveImage">
-                이미지 저장
-            </button>
-
-            <hr>
-
-            <hr>
+            <div style="display: flex; justify-content: flex-end;">
+                <button id="saveImage">
+                    이미지 저장
+                </button>
+            </div>
 
             <div class="section">
 
                 <label>분류</label>
                 <input id="category" placeholder="장르/분류">
+                
+                <p></p>
 
                 <label>편집할 프로필</label>
-
                 <div class="cardSelect">
 
-                    <label>
+                    <label-a>
 
-                        <input type="radio" name="selectedCard" value="0" checked>프로필 1
+                        <input type="radio" name="selectedCard" value="0" checked> 프로필 1
 
-                    </label>
+                    </label-a>
 
-                    <label>
+                    <label-a>
 
-                        <input type="radio" name="selectedCard" value="1">프로필 2
+                        <input type="radio" name="selectedCard" value="1"> 프로필 2
 
-                    </label>
+                    </label-a>
 
                 </div>
 
             </div>
 
-            <hr>
+            <br>
 
             <div class="section">
+
+                <label>헤더 색상</label>
+                <input type="color" id="headerColor">
 
                 <label>한글 이름</label>
                 <input id="nameKR">
@@ -67,35 +68,36 @@
                 <label>영문 이름</label>
                 <input id="nameEN">
 
-                <label>헤더 색상</label>
-                <input type="color" id="headerColor">
-
             </div>
 
-            <hr>
+            <br>
 
             <div class="section">
 
                 <label>이미지</label>
 
                 <input type="file" id="imageInput" accept="image/*">
+                
+                <div class="imageEditor">
+                
+                    <label>확대</label>
+                    <input type="range" id="imageScale" min="50" max="300" value="100">
 
-                <label>확대</label>
-                <input type="range" id="imageScale" min="50" max="300" value="100">
+                    <label>좌우 이동</label>
+                    <input type="range" id="imageOffsetX" min="0" max="100" value="50">
 
-                <label>좌우 이동</label>
-                <input type="range" id="imageOffsetX" min="0" max="100" value="50">
-
-                <label>상하 이동</label>
-                <input type="range" id="imageOffsetY" min="0" max="100" value="50">
-
+                    <label>상하 이동</label>
+                    <input type="range" id="imageOffsetY" min="0" max="100" value="50">
+                
+                </div>
+           
             </div>
 
-            <hr>
+            <br>
 
             <div class="section">
 
-                <h3>프로필 표</h3>
+                <label>프로필</label>
 
                 <div id="rowEditor"></div>
 
