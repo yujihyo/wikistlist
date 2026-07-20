@@ -1,4 +1,7 @@
-const selectedCard = document.getElementById("selectedCard");
+const selectedCards =
+    document.querySelectorAll(
+        'input[name="selectedCard"]'
+    );
 const saveImage =
     document.getElementById("saveImage");
 const categoryInput =
@@ -30,11 +33,16 @@ document.getElementById("categoryPreview").innerHTML =
     '분류 : <span class="category-text">' + category + '</span>';
 loadEditor();
 
-selectedCard.addEventListener("change", () => {
+selectedCards.forEach(radio => {
 
-    currentCard = Number(selectedCard.value);
+    radio.addEventListener("change", () => {
 
-    loadEditor();
+        currentCard =
+            Number(radio.value);
+
+        loadEditor();
+
+    });
 
 });
 
