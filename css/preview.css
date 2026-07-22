@@ -69,6 +69,7 @@
 #previewZoom{
 
     transform-origin:top left;
+    width:fit-content;
 
 }
 
@@ -83,6 +84,8 @@
     #preview{
 
         justify-content:flex-start;
+        overflow-x:hidden;
+        overflow-y:auto;
 
     }
 
@@ -102,7 +105,8 @@
 
         transform:scale(.55);
 
-        width:181.8%;
+        width:max-content;
+        
 
     }
 
