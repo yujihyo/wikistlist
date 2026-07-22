@@ -68,7 +68,6 @@
 
 #previewZoom{
 
-    transform-origin:top left;
     width:fit-content;
 
 }
@@ -104,9 +103,7 @@
     #previewZoom{
 
         transform:scale(.55);
-
-        width:max-content;
-        
+        transform-origin:top left;
 
     }
 
