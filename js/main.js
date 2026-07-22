@@ -68,9 +68,14 @@ function loadEditor() {
 
     imageInput.value = "";
 
-    imageScale.value = profile.image.scale;
-    imageOffsetX.value = profile.image.offsetX;
-    imageOffsetY.value = profile.image.offsetY;
+    imageScale.value =
+        profile.image?.scale ?? 100;
+
+    imageOffsetX.value =
+        profile.image?.offsetX ?? 50;
+
+    imageOffsetY.value =
+        profile.image?.offsetY ?? 50;
 
     drawRows();
 
@@ -296,27 +301,52 @@ function loadLocalData() {
         const save =
             JSON.parse(data);
 
+
         if (save.category !== undefined) {
 
             category = save.category;
 
         }
 
+
         if (save.profiles) {
 
-            save.profiles.forEach((profile, index) => {
+            save.profiles.forEach((savedProfile, index) => {
 
                 if (!profiles[index]) return;
 
-                profiles[index] = profile;
+
+                profiles[index] = {
+
+                    ...profiles[index],
+
+                    ...savedProfile,
+
+
+                    image: {
+
+                        ...profiles[index].image,
+
+                        ...(savedProfile.image || {})
+
+                    },
+
+
+                    rows:
+                        savedProfile.rows ||
+                        profiles[index].rows
+
+                };
+
 
             });
 
         }
 
+
     }
 
-    catch (e) {
+    catch(e){
 
         console.error(e);
 
@@ -451,23 +481,5 @@ sidebarToggle.addEventListener("click",(e)=>{
         sidebar.classList.contains("closed")
         ? ">"
         : "<";
-
-});
-
-document.addEventListener("click", (e) => {
-
-    if(window.innerWidth <= 768){
-
-        if(
-            !sidebar.contains(e.target) &&
-            e.target !== sidebarToggle
-        ){
-
-            sidebar.classList.add("closed");
-
-            sidebarToggle.textContent = ">";
-        }
-
-    }
 
 });

@@ -66,7 +66,7 @@ function updateCard(card, profile) {
     const imageBox =
         card.querySelector(".card-image");
 
-    if (profile.image.url) {
+    if (profile.image && profile.image.url) {
 
         imageBox.style.backgroundImage =
             `url(${profile.image.url})`;
