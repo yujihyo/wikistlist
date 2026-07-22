@@ -95,12 +95,6 @@
 
     }
 
-    #exportArea{
-
-        padding:20px;
-
-    }
-
     #previewZoom{
 
         transform:scale(.55);
