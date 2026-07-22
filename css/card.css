@@ -92,17 +92,17 @@
 
     color:white;
 
-    padding:calc(10px * var(--card-scale));
+    padding:8px; /*calc*/
 
-    font-size:calc(17px * var(--card-scale));
+    font-size:14px; /*calc*/
 
 }
 
 .profile-table td{
 
-    padding:calc(10px * var(--card-scale));
+    padding:8px; /*calc*/
 
-    font-size:calc(17px * var(--card-scale));
+    font-size:14px; /*calc*/
 
 }
 

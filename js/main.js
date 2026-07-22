@@ -341,16 +341,27 @@ async function savePreviewAsImage() {
     clone.style.overflow = "visible";
     clone.style.padding = "40px";
     clone.style.background = "#fff";
+    
+    clone.style.fontKerning = "none";
+    clone.style.textRendering = "geometricPrecision";
+
+    clone.querySelectorAll("*").forEach(el => {
+
+    el.style.fontKerning = "none";
+    el.style.textRendering = "geometricPrecision";
+
+    });
 
     document.body.appendChild(clone);
 
+    await document.fonts.ready;
     const canvas = await html2canvas(clone,{
 
         backgroundColor:"#fff",
 
         useCORS:true,
 
-        scale:2
+        scale:2,
 
     });
 
