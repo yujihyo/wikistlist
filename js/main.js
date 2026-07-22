@@ -332,10 +332,6 @@ async function savePreviewAsImage() {
 
     const clone = source.cloneNode(true);
 
-    // 저장용 복제본에서는 모바일 축소 제거
-    clone.style.transform = "none";
-    clone.style.transformOrigin = "";
-
     clone.style.position = "absolute";
     clone.style.left = "-10000px";
     clone.style.top = "0";
