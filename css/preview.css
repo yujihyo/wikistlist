@@ -83,8 +83,10 @@
     #preview{
 
         justify-content:flex-start;
-        overflow-x:hidden;
+        overflow-x:auto;
         overflow-y:auto;
+
+        -webkit-overflow-scrolling:touch;
 
     }
 
@@ -104,6 +106,8 @@
 
         transform:scale(.55);
         transform-origin:top left;
+
+        display:inline-block;
 
     }
 
