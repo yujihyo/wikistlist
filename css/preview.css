@@ -74,6 +74,18 @@
 
     }
 
+    #preview{
+
+        justify-content:flex-start;
+
+    }
+
+    #cardContainer{
+
+        justify-content:flex-start;
+
+    }
+
     #exportArea{
 
         padding:20px;
