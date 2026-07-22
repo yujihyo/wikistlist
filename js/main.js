@@ -277,7 +277,7 @@ function drawRows() {
 
 function saveLocalData() {
 
-    localStorage.setItem(
+    sessionStorage.setItem(
         SAVE_KEY,
         JSON.stringify({
 
@@ -292,7 +292,7 @@ function saveLocalData() {
 function loadLocalData() {
 
     const data =
-        localStorage.getItem(SAVE_KEY);
+        sessionStorage.getItem(SAVE_KEY);
 
     if (!data) return;
 
