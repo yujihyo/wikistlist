@@ -66,6 +66,12 @@
 
 }
 
+#previewZoom{
+
+    transform-origin:top left;
+
+}
+
 @media (max-width:768px){
 
     :root{
@@ -89,6 +95,14 @@
     #exportArea{
 
         padding:20px;
+
+    }
+
+    #previewZoom{
+
+        transform:scale(.55);
+
+        width:181.8%;
 
     }
 

@@ -33,7 +33,7 @@
 
                 <label>분류</label>
                 <input id="category" placeholder="장르/분류">
-                
+
                 <p></p>
 
                 <label>편집할 프로필</label>
@@ -80,9 +80,9 @@
                 <label>이미지</label>
 
                 <input type="file" id="imageInput" accept="image/*">
-                
+
                 <div class="imageEditor">
-                
+
                     <label>확대</label>
                     <input type="range" id="imageScale" min="50" max="300" value="100">
 
@@ -91,9 +91,9 @@
 
                     <label>상하 이동</label>
                     <input type="range" id="imageOffsetY" min="0" max="100" value="50">
-                
+
                 </div>
-           
+
             </div>
 
             <br>
@@ -113,13 +113,14 @@
         </aside>
 
         <main id="preview">
+            <div id="previewZoom">
+                <div id="exportArea">
 
-            <div id="exportArea">
+                    <div id="categoryPreview"></div>
 
-                <div id="categoryPreview"></div>
+                    <div id="cardContainer"></div>
 
-                <div id="cardContainer"></div>
-
+                </div>
             </div>
 
         </main>
