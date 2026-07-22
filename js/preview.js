@@ -66,6 +66,19 @@ function updateCard(card, profile) {
     const imageBox =
         card.querySelector(".card-image");
 
+    if (currentImageShape === "square") {
+
+        imageBox.style.height =
+            "calc(390px * var(--card-scale))";
+
+    }
+    else {
+
+        imageBox.style.height =
+            "calc(520px * var(--card-scale))";
+
+    }
+
     if (profile.image && profile.image.url) {
 
         imageBox.style.backgroundImage =

@@ -6,6 +6,10 @@ const saveImage =
     document.getElementById("saveImage");
 const categoryInput =
     document.getElementById("category");
+const imageShapeInputs =
+    document.querySelectorAll(
+        'input[name="imageShape"]'
+    );
 
 const nameKR = document.getElementById("nameKR");
 const nameJP = document.getElementById("nameJP");
@@ -41,6 +45,28 @@ selectedCards.forEach(radio => {
             Number(radio.value);
 
         loadEditor();
+
+    });
+
+});
+
+
+imageShapeInputs.forEach(radio=>{
+
+    radio.addEventListener("change",()=>{
+
+        currentImageShape =
+            radio.value;
+
+
+        cardElements.forEach((card,index)=>{
+
+            updateCard(
+                card,
+                profiles[index]
+            );
+
+        });
 
     });
 
