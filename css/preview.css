@@ -65,3 +65,19 @@
     color:#3273d1;
 
 }
+
+@media (max-width:768px){
+
+    :root{
+
+        --card-scale:0.6;
+
+    }
+
+    #exportArea{
+
+        padding:20px;
+
+    }
+
+}

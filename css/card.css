@@ -92,17 +92,17 @@
 
     color:white;
 
-    padding:8px; /*calc*/
+    padding:calc(10px * var(--card-scale)); /*calc*/
 
-    font-size:14px; /*calc*/
+    font-size:calc(17px * var(--card-scale)); /*calc*/
 
 }
 
 .profile-table td{
 
-    padding:8px; /*calc*/
+    padding:calc(10px * var(--card-scale)); /*calc*/
 
-    font-size:14px; /*calc*/
+    font-size:calc(17px * var(--card-scale)); /*calc*/
 
 }
 

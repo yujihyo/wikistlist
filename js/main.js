@@ -376,3 +376,15 @@ async function savePreviewAsImage() {
     link.click();
 
 }
+
+const sidebar =
+    document.getElementById("sidebar");
+
+const sidebarHandle =
+    document.getElementById("sidebarHandle");
+
+sidebarHandle.addEventListener("click",()=>{
+
+    sidebar.classList.toggle("open");
+
+});
