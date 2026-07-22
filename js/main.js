@@ -383,8 +383,29 @@ const sidebar =
 const sidebarHandle =
     document.getElementById("sidebarHandle");
 
-sidebarHandle.addEventListener("click",()=>{
+sidebarHandle.addEventListener("click",(e)=>{
+
+    e.stopPropagation();
 
     sidebar.classList.toggle("open");
+
+});
+
+const preview =
+    document.getElementById("preview");
+
+preview.addEventListener("click", () => {
+
+    if(window.innerWidth <= 768){
+
+        sidebar.classList.remove("open");
+
+    }
+
+});
+
+sidebar.addEventListener("click",(e)=>{
+
+    e.stopPropagation();
 
 });
