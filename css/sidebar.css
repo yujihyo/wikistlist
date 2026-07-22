@@ -329,11 +329,9 @@ input[type="range"]{
         box-shadow:0 -8px 25px rgba(0,0,0,.2);
 
         transform:translateY(calc(100% - 52px));
-        
-        transition:transform .25s ease;
-        
-        touch-action:none;
-        
+
+        transition:transform .25s;
+
         z-index:1000;
 
     }
@@ -347,10 +345,6 @@ input[type="range"]{
     #sidebarHandle{
 
         display:flex;
-
-        user-select:none;
-    
-        touch-action:none;
 
         justify-content:center;
 
