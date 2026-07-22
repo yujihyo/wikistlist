@@ -328,7 +328,7 @@ input[type="range"]{
 
         box-shadow:0 -8px 25px rgba(0,0,0,.2);
 
-        transform:translateY(calc(100% - 80px));
+        transform:translateY(calc(100% - 150px));
 
         transition:transform .25s;
 
