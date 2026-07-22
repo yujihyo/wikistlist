@@ -80,6 +80,12 @@
 
     }
 
+    #preview::-webkit-scrollbar{
+
+        display:none;
+
+    }
+
     #preview{
 
         justify-content:flex-start;
@@ -87,6 +93,7 @@
         overflow-y:auto;
 
         -webkit-overflow-scrolling:touch;
+        scrollbar-width:none;
 
     }
 
