@@ -290,6 +290,12 @@ input[type="range"]{
 
 }
 
+#sidebarTop{
+
+    display:none;
+
+}
+
 #sidebarToggle{
 
     display:none;
@@ -312,33 +318,52 @@ input[type="range"]{
 
     }
 
+    #sidebarTop{
+
+        display:flex;
+
+        justify-content:flex-end;
+
+        margin-bottom:12px;
+
+    }
+
     #sidebarToggle{
 
         display:flex;
 
-        position:absolute;
-
-        right:-34px;
-        top:20px;
-
-        width:34px;
-        height:60px;
-
         justify-content:center;
         align-items:center;
 
-        background:#fff;
+        width:36px;
+        height:36px;
 
         border:1px solid #ddd;
-        border-left:none;
 
-        border-radius:0 8px 8px 0;
+        background:#fff;
 
-        font-size:20px;
+        border-radius:6px;
 
         cursor:pointer;
 
         user-select:none;
+
+        font-size:18px;
+
+        font-weight:bold;
+    }
+
+    /* 닫힌 뒤에도 버튼은 화면에 남김 */
+
+    #sidebar.closed #sidebarToggle{
+
+        position:fixed;
+
+        left:10px;
+        top:16px;
+
+        z-index:9999;
+
     }
 
 }
