@@ -387,7 +387,7 @@ sidebarHandle.addEventListener("click",(e)=>{
 
     e.stopPropagation();
 
-    sidebar.classList.add("open");
+    sidebar.classList.toggle("open");
 
 });
 
