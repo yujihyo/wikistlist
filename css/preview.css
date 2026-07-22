@@ -83,7 +83,7 @@
 
     #preview{
 
-        justify-content:flex-start;
+        justify-content:center;
         overflow-x:hidden;
         overflow-y:auto;
 
@@ -91,7 +91,7 @@
 
     #cardContainer{
 
-        justify-content:flex-start;
+        justify-content:center;
 
     }
 
