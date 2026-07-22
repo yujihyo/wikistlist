@@ -82,6 +82,16 @@
     font-display: swap;
 }
 
+.section input,
+.section select,
+#rowEditor input,
+#rowEditor textarea {
+
+    font-family:"Pretendard", sans-serif;
+    font-size:11px;
+
+}
+
 #sidebar{
 
     width:360px;
