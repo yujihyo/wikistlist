@@ -377,14 +377,118 @@ async function savePreviewAsImage() {
 
 }
 
-const sidebar =
-    document.getElementById("sidebar");
+/* ==========================
+   Mobile Bottom Sheet
+========================== */
 
-const sidebarHandle =
-    document.getElementById("sidebarHandle");
+const sidebar = document.getElementById("sidebar");
+const handle = document.getElementById("sidebarHandle");
 
-sidebarHandle.addEventListener("click",()=>{
+let startY = 0;
+let currentY = 0;
+let isDragging = false;
 
-    sidebar.classList.toggle("open");
+// 접힌 위치
+const CLOSED = 0;
+
+// 열린 위치(%)
+const OPEN = 75;
+
+let sheet = CLOSED;
+
+function setSheet(percent){
+
+    sheet = Math.max(CLOSED, Math.min(OPEN, percent));
+
+    sidebar.style.transform =
+        `translateY(calc(100% - 52px - ${sheet}vh))`;
+
+}
+
+function dragStart(e){
+
+    if(window.innerWidth > 768) return;
+
+    isDragging = true;
+
+    startY =
+        e.touches ?
+        e.touches[0].clientY :
+        e.clientY;
+
+    currentY = startY;
+
+    sidebar.style.transition = "none";
+
+}
+
+function dragMove(e){
+
+    if(!isDragging) return;
+
+    currentY =
+        e.touches ?
+        e.touches[0].clientY :
+        e.clientY;
+
+    const diff =
+        startY - currentY;
+
+    const vh =
+        window.innerHeight;
+
+    const percent =
+        sheet + diff / vh * 100;
+
+    setSheet(percent);
+
+}
+
+function dragEnd(){
+
+    if(!isDragging) return;
+
+    isDragging = false;
+
+    sidebar.style.transition =
+        "transform .25s ease";
+
+    if(sheet > 35){
+
+        setSheet(OPEN);
+
+    }else{
+
+        setSheet(CLOSED);
+
+    }
+
+}
+
+handle.addEventListener("mousedown",dragStart);
+window.addEventListener("mousemove",dragMove);
+window.addEventListener("mouseup",dragEnd);
+
+handle.addEventListener("touchstart",dragStart,{passive:true});
+window.addEventListener("touchmove",dragMove,{passive:true});
+window.addEventListener("touchend",dragEnd);
+
+if(window.innerWidth<=768){
+
+    setSheet(CLOSED);
+
+}
+
+window.addEventListener("resize",()=>{
+
+    if(window.innerWidth<=768){
+
+        setSheet(sheet);
+
+    }else{
+
+        sidebar.style.transform="";
+
+    }
 
 });
