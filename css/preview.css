@@ -68,7 +68,7 @@
 
 #previewZoom{
 
-    transform-origin:top left;
+    transform-origin:top center;
     width:fit-content;
 
 }
