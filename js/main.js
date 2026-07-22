@@ -387,14 +387,14 @@ sidebarHandle.addEventListener("click",(e)=>{
 
     e.stopPropagation();
 
-    sidebar.classList.toggle("open");
+    sidebar.classList.add("open");
 
 });
 
 const preview =
     document.getElementById("preview");
 
-preview.addEventListener("click", () => {
+document.addEventListener("click", () => {
 
     if(window.innerWidth <= 768){
 
