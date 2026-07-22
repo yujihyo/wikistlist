@@ -341,38 +341,96 @@ async function savePreviewAsImage() {
     clone.style.overflow = "visible";
     clone.style.padding = "40px";
     clone.style.background = "#fff";
-    
+
     clone.style.fontKerning = "none";
     clone.style.textRendering = "geometricPrecision";
 
     clone.querySelectorAll("*").forEach(el => {
 
-    el.style.fontKerning = "none";
-    el.style.textRendering = "geometricPrecision";
+        el.style.fontKerning = "none";
+        el.style.textRendering = "geometricPrecision";
 
     });
 
     document.body.appendChild(clone);
 
     await document.fonts.ready;
-    const canvas = await html2canvas(clone,{
+    const canvas = await html2canvas(clone, {
 
-        backgroundColor:"#fff",
+        backgroundColor: "#fff",
 
-        useCORS:true,
+        useCORS: true,
 
-        scale:2,
+        scale: 2,
 
     });
 
     document.body.removeChild(clone);
 
-    const link=document.createElement("a");
+    const isMobile =
+        /Android|iPhone|iPad|iPod/i.test(
+            navigator.userAgent
+        );
 
-    link.download="pair.png";
+    const imageData =
+        canvas.toDataURL("image/png");
 
-    link.href=canvas.toDataURL();
+    if (!isMobile) {
 
-    link.click();
+        // ===== PC (기존과 동일) =====
+
+        const link =
+            document.createElement("a");
+
+        link.download = "pair.png";
+
+        link.href = imageData;
+
+        link.click();
+
+    } else {
+
+        // ===== 모바일 =====
+
+        const newWindow =
+            window.open();
+
+        if (newWindow) {
+
+            newWindow.document.write(`
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body{
+    margin:0;
+    background:#222;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+}
+img{
+    max-width:100%;
+    height:auto;
+}
+</style>
+</head>
+<body>
+<img src="${imageData}">
+</body>
+</html>
+        `);
+
+            newWindow.document.close();
+
+        } else {
+
+            alert("팝업이 차단되었습니다.");
+
+        }
+
+    }
 
 }
