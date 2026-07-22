@@ -289,3 +289,56 @@ input[type="range"]{
     margin-bottom:16px;
 
 }
+
+#sidebarToggle{
+
+    display:none;
+
+}
+
+@media (max-width:768px){
+
+    #sidebar{
+
+        position:relative;
+
+        transition:margin-left .25s ease;
+
+    }
+
+    #sidebar.closed{
+
+        margin-left:-360px;
+
+    }
+
+    #sidebarToggle{
+
+        display:flex;
+
+        position:absolute;
+
+        right:-34px;
+        top:20px;
+
+        width:34px;
+        height:60px;
+
+        justify-content:center;
+        align-items:center;
+
+        background:#fff;
+
+        border:1px solid #ddd;
+        border-left:none;
+
+        border-radius:0 8px 8px 0;
+
+        font-size:20px;
+
+        cursor:pointer;
+
+        user-select:none;
+    }
+
+}
