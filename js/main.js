@@ -372,17 +372,19 @@ async function savePreviewAsImage() {
             navigator.userAgent
         );
 
+    const imageData =
+        canvas.toDataURL("image/png");
+
     if (!isMobile) {
 
-        // ===== PC (기존 코드 유지) =====
+        // ===== PC (기존과 동일) =====
 
         const link =
             document.createElement("a");
 
         link.download = "pair.png";
 
-        link.href =
-            canvas.toDataURL("image/png");
+        link.href = imageData;
 
         link.click();
 
@@ -390,30 +392,44 @@ async function savePreviewAsImage() {
 
         // ===== 모바일 =====
 
-        canvas.toBlob(blob => {
+        const newWindow =
+            window.open();
 
-            if (!blob) {
+        if (newWindow) {
 
-                alert("이미지 생성에 실패했습니다.");
+            newWindow.document.write(`
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body{
+    margin:0;
+    background:#222;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+}
+img{
+    max-width:100%;
+    height:auto;
+}
+</style>
+</head>
+<body>
+<img src="${imageData}">
+</body>
+</html>
+        `);
 
-                return;
+            newWindow.document.close();
 
-            }
+        } else {
 
-            const url =
-                URL.createObjectURL(blob);
+            alert("팝업이 차단되었습니다.");
 
-            // 새 탭에서 이미지 열기
-            window.open(url, "_blank");
-
-            // 메모리 해제
-            setTimeout(() => {
-
-                URL.revokeObjectURL(url);
-
-            }, 60000);
-
-        }, "image/png");
+        }
 
     }
 
