@@ -341,39 +341,81 @@ async function savePreviewAsImage() {
     clone.style.overflow = "visible";
     clone.style.padding = "40px";
     clone.style.background = "#fff";
-    
+
     clone.style.fontKerning = "none";
     clone.style.textRendering = "geometricPrecision";
 
     clone.querySelectorAll("*").forEach(el => {
 
-    el.style.fontKerning = "none";
-    el.style.textRendering = "geometricPrecision";
+        el.style.fontKerning = "none";
+        el.style.textRendering = "geometricPrecision";
 
     });
 
     document.body.appendChild(clone);
 
     await document.fonts.ready;
-    const canvas = await html2canvas(clone,{
+    const canvas = await html2canvas(clone, {
 
-        backgroundColor:"#fff",
+        backgroundColor: "#fff",
 
-        useCORS:true,
+        useCORS: true,
 
-        scale:2,
+        scale: 2,
 
     });
 
     document.body.removeChild(clone);
 
-    const link=document.createElement("a");
+    const isMobile =
+        /Android|iPhone|iPad|iPod/i.test(
+            navigator.userAgent
+        );
 
-    link.download="pair.png";
+    if (!isMobile) {
 
-    link.href=canvas.toDataURL();
+        // ===== PC (기존 코드 유지) =====
 
-    link.click();
+        const link =
+            document.createElement("a");
+
+        link.download = "pair.png";
+
+        link.href =
+            canvas.toDataURL("image/png");
+
+        link.click();
+
+    } else {
+
+        // ===== 모바일 =====
+
+        canvas.toBlob(blob => {
+
+            if (!blob) {
+
+                alert("이미지 생성에 실패했습니다.");
+
+                return;
+
+            }
+
+            const url =
+                URL.createObjectURL(blob);
+
+            // 새 탭에서 이미지 열기
+            window.open(url, "_blank");
+
+            // 메모리 해제
+            setTimeout(() => {
+
+                URL.revokeObjectURL(url);
+
+            }, 60000);
+
+        }, "image/png");
+
+    }
 
 }
 
@@ -383,7 +425,7 @@ const sidebar =
 const sidebarHandle =
     document.getElementById("sidebarHandle");
 
-sidebarHandle.addEventListener("click",(e)=>{
+sidebarHandle.addEventListener("click", (e) => {
 
     e.stopPropagation();
 
@@ -396,7 +438,7 @@ const preview =
 
 document.addEventListener("click", () => {
 
-    if(window.innerWidth <= 768){
+    if (window.innerWidth <= 768) {
 
         sidebar.classList.remove("open");
 
@@ -404,7 +446,7 @@ document.addEventListener("click", () => {
 
 });
 
-sidebar.addEventListener("click",(e)=>{
+sidebar.addEventListener("click", (e) => {
 
     e.stopPropagation();
 
