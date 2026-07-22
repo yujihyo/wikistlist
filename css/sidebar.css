@@ -322,12 +322,6 @@ input[type="range"]{
 
 }
 
-#sidebarTop{
-
-    display:none;
-
-}
-
 #sidebarToggle{
 
     display:none;
@@ -336,63 +330,34 @@ input[type="range"]{
 
 @media (max-width:768px){
 
-    #sidebar{
-
-        position:relative;
-
-        transition:margin-left .25s ease;
-
-    }
-
-    #sidebar.closed{
-
-        margin-left:-360px;
-
-    }
-
-    #sidebarTop{
-
-        display:flex;
-
-        justify-content:flex-end;
-
-        margin-bottom:12px;
-
-    }
-
     #sidebarToggle{
 
         display:flex;
 
-        justify-content:center;
-        align-items:center;
+        position:fixed;
+
+        top:12px;
+        left:12px;
 
         width:36px;
         height:36px;
 
-        border:1px solid #ddd;
+        justify-content:center;
+        align-items:center;
 
         background:#fff;
 
-        border-radius:6px;
+        border:1px solid #ddd;
+
+        border-radius:8px;
+
+        font-size:20px;
+
+        font-weight:bold;
 
         cursor:pointer;
 
         user-select:none;
-
-        font-size:18px;
-
-        font-weight:bold;
-    }
-
-    /* 닫힌 뒤에도 버튼은 화면에 남김 */
-
-    #sidebar.closed #sidebarToggle{
-
-        position:fixed;
-
-        left:10px;
-        top:16px;
 
         z-index:9999;
 

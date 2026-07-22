@@ -441,7 +441,9 @@ const sidebar =
 const sidebarToggle =
     document.getElementById("sidebarToggle");
 
-sidebarToggle.addEventListener("click",()=>{
+sidebarToggle.addEventListener("click",(e)=>{
+
+    e.stopPropagation();
 
     sidebar.classList.toggle("closed");
 
@@ -449,5 +451,23 @@ sidebarToggle.addEventListener("click",()=>{
         sidebar.classList.contains("closed")
         ? ">"
         : "<";
+
+});
+
+document.addEventListener("click", (e) => {
+
+    if(window.innerWidth <= 768){
+
+        if(
+            !sidebar.contains(e.target) &&
+            e.target !== sidebarToggle
+        ){
+
+            sidebar.classList.add("closed");
+
+            sidebarToggle.textContent = ">";
+        }
+
+    }
 
 });
