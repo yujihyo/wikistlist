@@ -33,3 +33,91 @@ body{
     height:100vh;
 
 }
+
+#noticeModal{
+
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    width:100vw;
+    height:100vh;
+
+    background:rgba(0,0,0,0.45);
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    z-index:10000;
+
+}
+
+
+.noticeBox{
+
+    width:360px;
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:12px;
+
+    box-shadow:0 5px 20px rgba(0,0,0,0.2);
+
+    text-align:center;
+
+    font-family:"Pretendard", sans-serif;
+
+}
+
+
+.noticeBox h2{
+
+    margin-bottom:20px;
+
+    font-family:"Isamanru", sans-serif;
+
+}
+
+
+.noticeBox p{
+
+    text-align:left;
+
+    line-height:1.8;
+
+    font-size:14px;
+
+    margin-bottom:25px;
+
+}
+
+
+#noticeClose{
+
+    width:100%;
+
+    height:40px;
+
+    border:1px solid #ccc;
+
+    background:white;
+
+    border-radius:6px;
+
+    cursor:pointer;
+
+    font-family:"Isamanru", sans-serif;
+
+}
+
+
+#noticeClose:hover{
+
+    background:#f5f5f5;
+
+}

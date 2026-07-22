@@ -17,6 +17,27 @@
 
 <body>
 
+    <div id="noticeModal">
+
+        <div class="noticeBox">
+
+            <h2>주의사항</h2>
+
+            <p>
+                • 자유롭게 수정, 변형해서 사용해도 좋습니다.<br>
+                • 자작 발언 및 재배포는 금지<br>
+                • PC 최적화. 모바일 가능은 한데 불친절합니다(...)<br>
+                • 사용불가장르 : <b>은혼 드림</b> | 1차 한정 가능
+            </p>
+
+            <button id="noticeClose">
+                확인
+            </button>
+
+        </div>
+
+    </div>
+
     <div id="app">
         <div id="sidebarToggle">&lt;</div>
         <aside id="sidebar">
@@ -28,7 +49,7 @@
 
                 <label>분류</label>
                 <input id="category" placeholder="장르/분류">
-                
+
                 <p></p>
 
                 <label>편집할 프로필</label>
@@ -75,9 +96,9 @@
                 <label>이미지</label>
 
                 <input type="file" id="imageInput" accept="image/*">
-                
+
                 <div class="imageEditor">
-                
+
                     <label>확대</label>
                     <input type="range" id="imageScale" min="50" max="300" value="100">
 
@@ -86,9 +107,9 @@
 
                     <label>상하 이동</label>
                     <input type="range" id="imageOffsetY" min="0" max="100" value="50">
-                
+
                 </div>
-           
+
             </div>
 
             <br>

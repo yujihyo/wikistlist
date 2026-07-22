@@ -483,3 +483,31 @@ sidebarToggle.addEventListener("click",(e)=>{
         : "<";
 
 });
+
+const noticeModal =
+    document.getElementById("noticeModal");
+
+const noticeClose =
+    document.getElementById("noticeClose");
+
+
+const NOTICE_KEY = "wikistlist-notice";
+
+
+if(sessionStorage.getItem(NOTICE_KEY)){
+
+    noticeModal.style.display = "none";
+
+}
+
+
+noticeClose.addEventListener("click",()=>{
+
+    noticeModal.style.display="none";
+
+    sessionStorage.setItem(
+        NOTICE_KEY,
+        "checked"
+    );
+
+});
