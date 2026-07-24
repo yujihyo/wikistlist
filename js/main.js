@@ -565,19 +565,33 @@ img{
 const sidebar =
     document.getElementById("sidebar");
 
-const sidebarToggle =
-    document.getElementById("sidebarToggle");
+const sidebarHandle =
+    document.getElementById("sidebarHandle");
 
-sidebarToggle.addEventListener("click", (e) => {
+const preview =
+    document.getElementById("preview");
+
+sidebarHandle.addEventListener("click",(e)=>{
 
     e.stopPropagation();
 
-    sidebar.classList.toggle("closed");
+    sidebar.classList.toggle("open");
 
-    sidebarToggle.textContent =
-        sidebar.classList.contains("closed")
-            ? ">"
-            : "<";
+});
+
+sidebar.addEventListener("click",(e)=>{
+
+    e.stopPropagation();
+
+});
+
+preview.addEventListener("click",()=>{
+
+    if(window.innerWidth <= 768){
+
+        sidebar.classList.remove("open");
+
+    }
 
 });
 
