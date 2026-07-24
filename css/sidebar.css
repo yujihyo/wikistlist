@@ -398,61 +398,79 @@ input[type="range"]{
 
 @media (max-width:768px){
 
+    /* ===== Bottom Sheet ===== */
+
     #sidebar{
 
         position:fixed;
 
-        top:0;
         left:0;
+        bottom:0;
 
-        height:100vh;
+        width:100%;
+
+        height:70vh;
+
+        border-right:none;
+        border-top:1px solid #ddd;
+
+        border-radius:18px 18px 0 0;
 
         z-index:9998;
 
-        transform:translateX(0);
+        transform:translateY(calc(100% - 28px));
 
         transition:transform .3s ease;
 
-    }
-
-
-    #sidebar.closed{
-
-        transform:translateX(-100%);
+        padding-top:0;
 
     }
 
+    #sidebar.open{
 
-    #sidebarToggle{
+        transform:translateY(0);
+
+    }
+
+    /* ===== 손잡이 ===== */
+
+    #sidebarHandle{
 
         display:flex;
 
-        position:fixed;
-
-        top:12px;
-        left:12px;
-
-        width:36px;
-        height:36px;
-
         justify-content:center;
+
         align-items:center;
 
-        background:#fff;
-
-        border:1px solid #ddd;
-
-        border-radius:8px;
-
-        font-size:20px;
-
-        font-weight:bold;
+        height:28px;
 
         cursor:pointer;
 
-        user-select:none;
+        position:sticky;
 
-        z-index:9999;
+        top:0;
+
+        background:white;
+
+        z-index:10;
+
+    }
+
+    .handleBar{
+
+        width:54px;
+
+        height:6px;
+
+        border-radius:999px;
+
+        background:#bcbcbc;
+
+    }
+
+    #sidebarToggle{
+
+        display:none;
 
     }
 
