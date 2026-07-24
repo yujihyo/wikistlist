@@ -4,6 +4,12 @@ const selectedCards =
     );
 const saveImage =
     document.getElementById("saveImage");
+const showCredit =
+    document.getElementById("showCredit");
+const creditText =
+    document.getElementById("creditText");
+const creditPreview =
+    document.getElementById("creditPreview");
 const categoryInput =
     document.getElementById("category");
 const imageShapeInputs =
@@ -14,6 +20,8 @@ const imageShapeInputs =
 const nameKR = document.getElementById("nameKR");
 const nameJP = document.getElementById("nameJP");
 const nameEN = document.getElementById("nameEN");
+const hideSeparator =
+    document.getElementById("hideSeparator");
 const headerColor = document.getElementById("headerColor");
 
 const imageInput = document.getElementById("imageInput");
@@ -51,15 +59,15 @@ selectedCards.forEach(radio => {
 });
 
 
-imageShapeInputs.forEach(radio=>{
+imageShapeInputs.forEach(radio => {
 
-    radio.addEventListener("change",()=>{
+    radio.addEventListener("change", () => {
 
         currentImageShape =
             radio.value;
 
 
-        cardElements.forEach((card,index)=>{
+        cardElements.forEach((card, index) => {
 
             updateCard(
                 card,
@@ -78,6 +86,23 @@ function refreshCurrentCard() {
         cardElements[currentCard],
         profiles[currentCard]
     );
+
+    saveLocalData();
+
+}
+
+function updateCredit() {
+
+    if (creditVisible) {
+
+        creditPreview.textContent =
+            "ⓒ" + credit;
+
+    } else {
+
+        creditPreview.textContent = "";
+
+    }
 
     saveLocalData();
 
@@ -109,6 +134,16 @@ function loadEditor() {
 
     document.getElementById("categoryPreview").innerHTML =
         '분류 : <span class="category-text">' + category + '</span>';
+
+    showCredit.checked = creditVisible;
+
+    creditText.disabled = !creditVisible;
+
+    creditText.value = credit;
+
+    hideSeparator.checked = omitSeparator;
+
+    updateCredit();
 }
 
 nameKR.addEventListener("input", () => {
@@ -132,6 +167,14 @@ nameEN.addEventListener("input", () => {
 
 });
 
+hideSeparator.addEventListener("change", () => {
+
+    omitSeparator = hideSeparator.checked;
+
+    refreshCurrentCard();
+
+});
+
 headerColor.addEventListener("input", () => {
 
     profiles[currentCard].headerColor =
@@ -151,6 +194,27 @@ categoryInput.addEventListener("input", () => {
         '분류 : <span class="category-text">' + category + '</span>';
 
     saveLocalData();
+
+});
+
+showCredit.addEventListener("change", () => {
+
+    creditVisible =
+        showCredit.checked;
+
+    creditText.disabled =
+        !creditVisible;
+
+    updateCredit();
+
+});
+
+creditText.addEventListener("input", () => {
+
+    credit =
+        creditText.value;
+
+    updateCredit();
 
 });
 
@@ -308,7 +372,10 @@ function saveLocalData() {
         JSON.stringify({
 
             category,
-            profiles
+            profiles,
+            credit,
+            creditVisible,
+            omitSeparator
 
         })
     );
@@ -331,6 +398,10 @@ function loadLocalData() {
         if (save.category !== undefined) {
 
             category = save.category;
+            credit = save.credit || "";
+            creditVisible = save.creditVisible || false;
+            omitSeparator =
+                save.omitSeparator || false;
 
         }
 
@@ -372,7 +443,7 @@ function loadLocalData() {
 
     }
 
-    catch(e){
+    catch (e) {
 
         console.error(e);
 
@@ -497,7 +568,7 @@ const sidebar =
 const sidebarToggle =
     document.getElementById("sidebarToggle");
 
-sidebarToggle.addEventListener("click",(e)=>{
+sidebarToggle.addEventListener("click", (e) => {
 
     e.stopPropagation();
 
@@ -505,8 +576,8 @@ sidebarToggle.addEventListener("click",(e)=>{
 
     sidebarToggle.textContent =
         sidebar.classList.contains("closed")
-        ? ">"
-        : "<";
+            ? ">"
+            : "<";
 
 });
 
@@ -520,16 +591,16 @@ const noticeClose =
 const NOTICE_KEY = "wikistlist-notice";
 
 
-if(sessionStorage.getItem(NOTICE_KEY)){
+if (sessionStorage.getItem(NOTICE_KEY)) {
 
     noticeModal.style.display = "none";
 
 }
 
 
-noticeClose.addEventListener("click",()=>{
+noticeClose.addEventListener("click", () => {
 
-    noticeModal.style.display="none";
+    noticeModal.style.display = "none";
 
     sessionStorage.setItem(
         NOTICE_KEY,

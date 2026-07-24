@@ -124,6 +124,32 @@
 
 }
 
+.section label.checkLabel{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    margin-bottom:8px;
+
+    cursor:pointer;
+
+}
+
+.section label.checkLabel input{
+
+    width:auto;
+
+    height:auto;
+
+    margin:0;
+
+    padding:0;
+
+}
+
 .section label-a{
 
     display:block;
@@ -323,6 +349,38 @@ input[type="range"]{
     cursor:pointer;
 
     transition:.2s;
+
+}
+
+.optionSection{
+    margin-bottom:20px;
+}
+
+.checkLabel{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    cursor:pointer;
+    margin-bottom:8px;
+}
+
+#creditText:disabled{
+    background:#efefef;
+    color:#999;
+}
+
+.section label.smallCheck{
+
+    font-size:10px;
+
+}
+
+.section label.smallCheck input[type="checkbox"]{
+
+    width:10px;
+    height:10px;
+
+    margin:0;
 
 }
 

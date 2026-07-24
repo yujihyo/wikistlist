@@ -57,8 +57,21 @@ function updateCard(card, profile) {
     card.querySelector(".kr-name").textContent =
         profile.nameKR;
 
+    let subName = profile.nameJP;
+
+    if (profile.nameJP && profile.nameEN) {
+
+        subName +=
+            omitSeparator
+                ? " "
+                : " | ";
+
+    }
+
+    subName += profile.nameEN;
+
     card.querySelector(".sub-name").textContent =
-        `${profile.nameJP} | ${profile.nameEN}`;
+        subName.trim();
 
     card.querySelector(".profile-table").innerHTML =
         createRows(profile);

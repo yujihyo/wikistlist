@@ -1,5 +1,8 @@
 let currentImageShape = "rectangle";
-let category = "카테고리";
+let category = "장르/분류";
+let credit = "";
+let creditVisible = false;
+let omitSeparator = false;
 const profiles = [
 
 {
