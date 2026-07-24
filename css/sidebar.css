@@ -420,7 +420,7 @@ input[type="range"]{
 
         transform:translateY(calc(100% - 28px));
 
-        transition:transform .3s ease;
+        transition: transform .35s cubic-bezier(.22,1,.36,1);
 
         padding-top:0;
 
